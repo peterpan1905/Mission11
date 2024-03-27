@@ -13,7 +13,7 @@ namespace Mission11.Controllers
             _repo = repo;
         }
 
-        public IActionResult Index(int pageNum)
+        public IActionResult Index(int pageNum, string bookType)
         {
             int pageSize = 10;
 

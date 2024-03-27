@@ -20,3 +20,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.custom-list {
+    list-style-type: none;
+}
+
+.custom-list li::before {
+    content: "-";
+    margin-right: 5px;
+}
+
+.custom-bold {
+    font-weight: 500;
+}

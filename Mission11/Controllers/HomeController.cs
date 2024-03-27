@@ -15,7 +15,7 @@ namespace Mission11.Controllers
 
         public IActionResult Index(int pageNum)
         {
-            int pageSize = 5;
+            int pageSize = 10;
 
             var bookList = new BooksListViewModel
             {

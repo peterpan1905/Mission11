@@ -15,6 +15,8 @@ namespace Mission11.Components
 
         public IViewComponentResult Invoke()
         {
+            ViewBag.SelectedBooktype = RouteData?.Values["booktype"];
+
             var bookTypes = _bookRepo.Books
                 .Select(x => x.Category)
                 .Distinct()

@@ -1,4 +1,5 @@
-﻿@*
+﻿@using Mission11.Infastructure
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -18,4 +19,11 @@
         <li><strong class="custom-bold">Page Count:</strong> @Model.PageCount</li>
         <li><strong class="custom-bold">Price:</strong> $@Model.Price</li>
     </ul>
+
+    <form id="@Model.BookId" method="post" asp-page="/Cart">
+        <input type="hidden" asp_for="BookId" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+        <button type="submit" class="btn-outline-success btn-sm float-end">Buy</button>
+    </form>
+
 </div>

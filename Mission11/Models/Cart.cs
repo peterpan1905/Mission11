@@ -12,7 +12,7 @@
 
             if (line == null)
             {
-                Lines.Add(new CartLine()
+                Lines.Add(new CartLine
                 {
                     Book = book,
                     Quantity = quantity
@@ -28,18 +28,8 @@
 
         public void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal()
-        {
-            decimal total = 0;
+        public decimal CalculateTotal() => Lines.Sum(x => x.Quantity * 25); // Change this later to multiply the quantity by the price of the selected book plus all other selected books and their quantities
 
-            if (Lines != null)
-            {
-                total = (decimal)Lines.Where(line => line != null && line.Book != null)
-                    .Sum(line => line.Book.Price * line.Quantity);
-            }
-
-            return total;
-        }
         public class CartLine
         {
             public int CartLineId { get; set; }

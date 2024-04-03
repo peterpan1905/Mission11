@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BookstoreContext>(options =>
 {
-    options.UseSqlite(builder.Configuration["ConnectionStrings:BookstoreConnection"]);
+    options.UseSqlite(builder.Configuration["ConnectionStrings:BookstoreConnection"]); // Change this depending on the database system being used
 });
 
 builder.Services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
@@ -18,6 +18,9 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
+
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 

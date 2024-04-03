@@ -10,12 +10,14 @@ namespace Mission11.Pages
 
         private IBookstoreRepository _repo;
 
-        public CartModel(IBookstoreRepository temp)
+        public Cart Cart { get; set; }
+
+        public CartModel(IBookstoreRepository temp, Cart cartService)
         {
             _repo = temp;
+            Cart = cartService;
         }
 
-        public Cart? Cart { get; set; }
         public string ReturnUrl { get; set; } = "/";
 
         public void OnGet(string returnUrl)
@@ -31,12 +33,17 @@ namespace Mission11.Pages
 
             if (book != null) 
             {
-                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
                 Cart.AddItem(book, 1);
-                HttpContext.Session.SetJson("cart", Cart);
             }
 
             return RedirectToPage (new {retrurnUrl = returnUrl});
+        }
+
+        public IActionResult OnPostRemove (int bookId, string returnUrl)
+        {
+            Cart.RemoveLine(Cart.Lines.First(x => x.Book.BookId == bookId).Book);
+
+            return RedirectToPage (new { retrurnUrl = returnUrl});
         }
     }
 }

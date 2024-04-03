@@ -4,7 +4,7 @@
     {
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
-        public void AddItem(Book book, int quantity)
+        public virtual void AddItem(Book book, int quantity)
         {
             CartLine? line = Lines
                 .Where(x => x.Book.BookId == book.BookId)
@@ -24,9 +24,9 @@
             }
         }
 
-        public void RemoveLine(Book book) => Lines.RemoveAll(x => x.Book.BookId == book.BookId);
+        public virtual void RemoveLine(Book book) => Lines.RemoveAll(x => x.Book.BookId == book.BookId);
 
-        public void Clear() => Lines.Clear();
+        public virtual void Clear() => Lines.Clear();
 
         public decimal CalculateTotal() => Lines.Sum(x => x.Quantity * 25); // Change this later to multiply the quantity by the price of the selected book plus all other selected books and their quantities
 

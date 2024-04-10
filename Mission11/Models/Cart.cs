@@ -28,12 +28,12 @@
 
         public virtual void Clear() => Lines.Clear();
 
-        public decimal CalculateTotal() => Lines.Sum(x => x.Quantity * 25); // Change this later to multiply the quantity by the price of the selected book plus all other selected books and their quantities
+        public decimal CalculateTotal() => (decimal)Lines.Sum(x => x.Quantity * x.Book.Price); // Change this later to multiply the quantity by the price of the selected book plus all other selected books and their quantities
 
         public class CartLine
         {
             public int CartLineId { get; set; }
-            public Book Book { get; set; }
+            public Book? Book { get; set; }
             public int Quantity { get; set; }
         }
     }

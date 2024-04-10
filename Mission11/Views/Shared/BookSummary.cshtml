@@ -21,7 +21,7 @@
     </ul>
 
     <form id="@Model.BookId" method="post" asp-page="/Cart">
-        <input type="hidden" asp_for="BookId" />
+        <input type="hidden" asp-for="BookId" />
         <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
         <button type="submit" class="btn-outline-success btn-sm float-end">Buy</button>
     </form>

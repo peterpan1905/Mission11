@@ -23,7 +23,7 @@ namespace Mission11.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+            // Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
 
         public IActionResult OnPost(int bookId, string returnUrl) 
@@ -36,7 +36,7 @@ namespace Mission11.Pages
                 Cart.AddItem(book, 1);
             }
 
-            return RedirectToPage (new {retrurnUrl = returnUrl});
+            return RedirectToPage (new {returnUrl = returnUrl});
         }
 
         public IActionResult OnPostRemove (int bookId, string returnUrl)
